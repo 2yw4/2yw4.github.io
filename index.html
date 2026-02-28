@@ -18,13 +18,11 @@ body {
 /* Navbar */
 nav {
   background: #111;
-  color: #fff;
   padding: 1em;
   text-align: center;
   position: fixed;
   width: 100%;
   top: 0;
-  left: 0;
   z-index: 1000;
 }
 
@@ -40,7 +38,7 @@ nav a:hover {
   color: #ccc; 
 }
 
-/* Section layout */
+/* Section */
 section {
   padding: 100px 20px;
   min-height: 100vh;
@@ -51,7 +49,7 @@ section {
   text-align: center;
 }
 
-/* White Glow Title */
+/* Glow Title */
 h1 { 
   font-size: 4em; 
   margin-bottom: 0.5em; 
@@ -95,7 +93,6 @@ h1 {
   }
 }
 
-/* Text */
 p { 
   max-width: 600px; 
   color: #ccc; 
@@ -112,7 +109,6 @@ p {
   text-decoration: none;
   border-radius: 5px;
   font-weight: bold;
-  transition: background 0.3s;
 }
 
 .discord-link:hover { 
@@ -124,7 +120,6 @@ footer {
   text-align: center;
   padding: 1em;
   background: #111;
-  color: #fff;
 }
 
 </style>
@@ -143,18 +138,16 @@ footer {
 
 <p>Welcome to the “You R Mine” website. Click the button below to join or message me on Discord!</p>
 
-<a href="https://discord.gg/U7CK4H4S" target="_blank" class="discord-link">Join Discord</a>
+<a href="https://discord.gg/U7CK4H4S" target="_blank" class="discord-link">
+Join Discord
+</a>
 
 </section>
 
 <footer>
-&copy; 2026 You R Mine. All rights reserved.
+© 2026 You R Mine
 </footer>
 
-<!-- Hidden Background Music -->
-<audio id="bg-music" loop>
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
 
 <!-- Typing Animation -->
 <script>
@@ -171,14 +164,24 @@ function typing(){
 typing();
 </script>
 
-<!-- Play music after first click -->
+
+<!-- YouTube Background Music -->
+<iframe
+  id="ytmusic"
+  width="0"
+  height="0"
+  src="https://www.youtube.com/embed/yArjtdk_QuA?autoplay=1&loop=1&playlist=yArjtdk_QuA&mute=1"
+  frameborder="0"
+  allow="autoplay">
+</iframe>
+
 <script>
 document.addEventListener("click", function () {
-  const music = document.getElementById("bg-music");
-  music.volume = 0.3;
-  music.play();
+  const iframe = document.getElementById("ytmusic");
+  iframe.src = iframe.src.replace("mute=1", "mute=0");
 }, { once: true });
 </script>
 
 </body>
 </html>
+
