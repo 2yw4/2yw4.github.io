@@ -1,2 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You R Mine</title>
+
+<style>
+
+body { 
+  font-family: Arial, sans-serif; 
+  margin: 0; 
+  padding: 0; 
+  background: #000; 
+  color: #fff;
+}
+
+/* Navbar */
+nav {
+  background: #111;
+  padding: 1em;
+  text-align: center;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+nav a { 
+  color: #fff; 
+  text-decoration: none; 
+  font-weight: bold; 
+  font-size: 1.2em;
+  margin: 0 1em;
+}
+
+nav a:hover { 
+  color: #ccc; 
+}
+
+/* Sections */
+section {
+  padding: 100px 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* White glow title */
+h1 { 
+  font-size: 4em; 
+  margin-bottom: 0.5em; 
+  color: #ffffff;
+  text-shadow:
+    0 0 5px #ffffff,
+    0 0 10px #ffffff,
+    0 0 20px #ffffff,
+    0 0 40px #ffffff;
+  animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow:
+      0 0 5px #ffffff,
+      0 0 10px #ffffff,
+      0 0 20px #ffffff,
+      0 0 40px #ffffff;
+  }
+  to {
+    text-shadow:
+      0 0 10px #ffffff,
+      0 0 20px #ffffff,
+      0 0 30px #ffffff,
+      0 0 60px #ffffff;
+  }
+}
+
+/* Fade animation */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 2s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+p { 
+  max-width: 600px; 
+  color: #ccc; 
+  font-size: 1.2em;
+  text-align: center;
+}
+
+/* Discord button */
+.discord-link {
+  margin-top: 20px;
+  display: inline-block;
+  padding: 10px 20px;
+  background: #7289da;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.discord-link:hover { 
+  background: #5b6eae; 
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 1em;
+  background: #111;
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+<a href="#home">Home</a>
+<a href="https://discord.gg/U7CK4H4S" target="_blank">Discord</a>
+</nav>
+
+<section id="home" class="fade-in">
+
+<h1 id="typing"></h1>
+
+<p>
+Welcome to the “You R Mine” website.  
+Click below to join or message me on Discord.
+</p>
+
+<a href="https://discord.gg/U7CK4H4S" target="_blank" class="discord-link">
+Join Discord
+</a>
+
+</section>
+
+<footer>
+© 2026 You R Mine
+</footer>
+
+<!-- Hidden Background Music -->
+<audio id="bg-music" loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Typing animation -->
+<script>
+
+const text = "You R Mine";
+let i = 0;
+
+function typing(){
+  if(i < text.length){
+    document.getElementById("typing").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typing, 120);
+  }
+}
+
+typing();
+
+</script>
+
+<!-- Music autoplay after click -->
+<script>
+
+document.addEventListener("click", function () {
+  const music = document.getElementById("bg-music");
+  music.volume = 0.3;
+  music.play();
+}, { once: true });
+
+</script>
+
+</body>
+</html>
 
 
