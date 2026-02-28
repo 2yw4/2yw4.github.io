@@ -7,6 +7,7 @@
 
 <style>
 
+/* Base */
 body { 
   font-family: Arial, sans-serif; 
   margin: 0; 
@@ -39,7 +40,7 @@ nav a:hover {
   color: #ccc; 
 }
 
-/* Sections */
+/* Layout */
 section {
   padding: 100px 20px;
   min-height: 100vh;
@@ -47,9 +48,10 @@ section {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
-/* White glow title */
+/* Glow title */
 h1 { 
   font-size: 4em; 
   margin-bottom: 0.5em; 
@@ -79,7 +81,7 @@ h1 {
   }
 }
 
-/* Fade animation */
+/* Fade in */
 .fade-in {
   opacity: 0;
   transform: translateY(20px);
@@ -97,7 +99,6 @@ p {
   max-width: 600px; 
   color: #ccc; 
   font-size: 1.2em;
-  text-align: center;
 }
 
 /* Discord button */
@@ -122,6 +123,7 @@ footer {
   text-align: center;
   padding: 1em;
   background: #111;
+  color: #fff;
 }
 
 </style>
@@ -138,10 +140,7 @@ footer {
 
 <h1 id="typing"></h1>
 
-<p>
-Welcome to the “You R Mine” website.  
-Click below to join or message me on Discord.
-</p>
+<p>Welcome to the “You R Mine” website. Click the button below to join or message me on Discord!</p>
 
 <a href="https://discord.gg/U7CK4H4S" target="_blank" class="discord-link">
 Join Discord
@@ -150,17 +149,12 @@ Join Discord
 </section>
 
 <footer>
-© 2026 You R Mine
+© 2026 You R Mine. All rights reserved.
 </footer>
 
-<!-- Hidden Background Music -->
-<audio id="bg-music" loop>
-<source src="music.mp3" type="audio/mpeg">
-</audio>
-
-<!-- Typing animation -->
 <script>
 
+/* Typing animation */
 const text = "You R Mine";
 let i = 0;
 
@@ -176,18 +170,8 @@ typing();
 
 </script>
 
-<!-- Music autoplay after click -->
-<script>
-
-document.addEventListener("click", function () {
-  const music = document.getElementById("bg-music");
-  music.volume = 0.3;
-  music.play();
-}, { once: true });
-
-</script>
-
 </body>
 </html>
+
 
 
