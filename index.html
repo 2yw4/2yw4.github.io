@@ -7,116 +7,88 @@
 
 <style>
 
-body { 
-  font-family: Arial, sans-serif; 
-  margin: 0; 
-  padding: 0; 
-  background: #000; 
-  color: #fff;
+body{
+margin:0;
+font-family:monospace;
+background:black;
+color:#00ff9c;
+text-align:center;
+overflow:hidden;
 }
 
-nav {
-  background: #111;
-  padding: 1em;
-  text-align: center;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  left: 0;
-  z-index: 1000;
+canvas{
+position:fixed;
+top:0;
+left:0;
+z-index:-1;
 }
 
-nav a { 
-  color: #fff; 
-  text-decoration: none; 
-  font-weight: bold; 
-  font-size: 1.2em;
-  margin: 0 1em;
+/* navbar */
+
+nav{
+background:rgba(0,0,0,0.7);
+padding:15px;
+position:fixed;
+top:0;
+width:100%;
 }
 
-nav a:hover { 
-  color: #ccc; 
+nav a{
+color:#00ff9c;
+text-decoration:none;
+margin:0 20px;
+font-size:18px;
 }
 
-section {
-  padding: 100px 20px;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+nav a:hover{
+color:white;
 }
 
-h1 { 
-  font-size: 4em; 
-  margin-bottom: 0.5em; 
-  color: #ffffff;
-  text-shadow:
-    0 0 5px #ffffff,
-    0 0 10px #ffffff,
-    0 0 20px #ffffff,
-    0 0 40px #ffffff;
-  animation: glow 1.5s ease-in-out infinite alternate;
+section{
+padding-top:160px;
 }
 
-@keyframes glow {
-  from {
-    text-shadow:
-      0 0 5px #ffffff,
-      0 0 10px #ffffff,
-      0 0 20px #ffffff,
-      0 0 40px #ffffff;
-  }
-  to {
-    text-shadow:
-      0 0 10px #ffffff,
-      0 0 20px #ffffff,
-      0 0 30px #ffffff,
-      0 0 60px #ffffff;
-  }
+.terminal{
+background:#0a0a0a;
+border:1px solid #00ff9c;
+padding:35px;
+display:inline-block;
+box-shadow:0 0 20px #00ff9c33;
 }
 
-.fade-in {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeIn 2s forwards;
+h1{
+font-size:45px;
+margin-bottom:15px;
 }
 
-@keyframes fadeIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.discord{
+display:inline-block;
+margin-top:20px;
+padding:10px 25px;
+border:1px solid #00ff9c;
+color:#00ff9c;
+text-decoration:none;
+transition:0.2s;
 }
 
-p { 
-  max-width: 600px; 
-  color: #ccc; 
-  font-size: 1.2em;
+.discord:hover{
+background:#00ff9c;
+color:black;
 }
 
-.discord-link {
-  margin-top: 20px;
-  display: inline-block;
-  padding: 10px 20px;
-  background: #7289da;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 5px;
-  font-weight: bold;
-  transition: 0.3s;
+.counter{
+margin-top:20px;
+font-size:18px;
+color:white;
 }
 
-.discord-link:hover { 
-  background: #5b6eae; 
-}
-
-footer {
-  text-align: center;
-  padding: 1em;
-  background: #111;
-  color: #fff;
+footer{
+position:fixed;
+bottom:0;
+width:100%;
+padding:10px;
+background:#000;
+color:#555;
 }
 
 </style>
@@ -124,44 +96,102 @@ footer {
 
 <body>
 
+<canvas id="bg"></canvas>
+
 <nav>
-<a href="#home">Home</a>
+<a href="/">Home</a>
 <a href="https://discord.gg/A5bx7pWee" target="_blank">Discord</a>
 </nav>
 
-<section id="home" class="fade-in">
+<section>
+
+<div class="terminal">
 
 <h1 id="typing"></h1>
 
-<p>Welcome to the “/home” website. Click the button below to join the Discord!</p>
+<p>> system online</p>
+<p>> welcome to /home</p>
 
-<a href="https://discord.gg/A5bx7pWee" target="_blank" class="discord-link">
+<a class="discord" href="https://discord.gg/A5bx7pWee" target="_blank">
 Join Discord
 </a>
+
+<div class="counter">
+Members: <span id="members">Loading...</span>
+</div>
+
+</div>
 
 </section>
 
 <footer>
-© 2026 /home. All rights reserved.
+© 2026 /home
 </footer>
 
 <script>
 
-const text = "/home";
-let i = 0;
+/* typing animation */
 
-function typing(){
-  if(i < text.length){
-    document.getElementById("typing").innerHTML += text.charAt(i);
-    i++;
-    setTimeout(typing, 120);
-  }
+const text="/home";
+let i=0;
+
+function type(){
+if(i<text.length){
+document.getElementById("typing").innerHTML+=text.charAt(i);
+i++;
+setTimeout(type,120);
+}
 }
 
-typing();
+type();
+
+/* particle background */
+
+const canvas=document.getElementById("bg");
+const ctx=canvas.getContext("2d");
+
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+
+let particles=[];
+
+for(let i=0;i<100;i++){
+particles.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+vx:(Math.random()-0.5)*1,
+vy:(Math.random()-0.5)*1
+});
+}
+
+function draw(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+
+particles.forEach(p=>{
+p.x+=p.vx;
+p.y+=p.vy;
+
+if(p.x<0||p.x>canvas.width)p.vx*=-1;
+if(p.y<0||p.y>canvas.height)p.vy*=-1;
+
+ctx.fillStyle="#00ff9c";
+ctx.fillRect(p.x,p.y,2,2);
+});
+
+requestAnimationFrame(draw);
+}
+
+draw();
+
+/* discord member counter */
+
+fetch("https://discord.com/api/v9/invites/A5bx7pWee?with_counts=true")
+.then(res=>res.json())
+.then(data=>{
+document.getElementById("members").innerText=data.approximate_member_count;
+});
 
 </script>
 
 </body>
 </html>
-
