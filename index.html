@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>2yw4</title>
+<title>/home</title>
 
 <style>
 
@@ -17,24 +17,6 @@ align-items:center;
 background:#000;
 color:white;
 overflow:hidden;
-}
-
-/* enter screen */
-
-#enter{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:black;
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:28px;
-letter-spacing:3px;
-cursor:pointer;
-z-index:10;
 }
 
 /* snow */
@@ -194,21 +176,19 @@ opacity:.6;
 
 <body>
 
-<div id="enter">click to enter</div>
-
 <div class="snow"></div>
 
 <div class="cursor" id="cursor"></div>
 
 <button class="music" onclick="toggleMusic()">music</button>
 
-<audio id="song" loop preload="auto"></audio>
+<audio id="song" loop autoplay muted></audio>
 
 <div class="container">
 
 <img src="IMG_1820.jpg" class="pfp">
 
-<h1>2yw4</h1>
+<h1>/home</h1>
 
 <div class="bio" id="typing"></div>
 
@@ -231,30 +211,25 @@ Visitors: <span id="visits">0</span>
 /* songs */
 
 const songs = [
-"https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3?filename=dark-ambient-114338.mp3",
-"https://cdn.pixabay.com/download/audio/2022/10/25/audio_946f8d6b1c.mp3?filename=dark-ambient-124008.mp3",
-"https://cdn.pixabay.com/download/audio/2022/03/10/audio_2b6f0a3a4d.mp3?filename=darkness-ambient-113997.mp3",
-"https://cdn.pixabay.com/download/audio/2022/11/17/audio_c3c9f2a4c5.mp3?filename=deep-dark-ambient-126122.mp3",
-"https://cdn.pixabay.com/audio/2023/03/14/audio_5f3c1c9a8f.mp3"
+"https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3",
+"https://cdn.pixabay.com/download/audio/2022/10/25/audio_946f8d6b1c.mp3",
+"https://cdn.pixabay.com/download/audio/2022/03/10/audio_2b6f0a3a4d.mp3",
+"https://cdn.pixabay.com/download/audio/2022/11/17/audio_c3c9f2a4c5.mp3"
 ];
 
-/* enter screen */
+const song = document.getElementById("song");
 
-const enter=document.getElementById("enter");
+const randomSong = songs[Math.floor(Math.random()*songs.length)];
+song.src = randomSong;
 
-enter.onclick=()=>{
-
-enter.style.display="none";
-
-const song=document.getElementById("song");
-
-const randomSong=songs[Math.floor(Math.random()*songs.length)];
-
-song.src=randomSong;
-song.volume=0.6;
+song.volume = 0.6;
 song.play();
 
-}
+/* unmute when user clicks anywhere */
+
+document.addEventListener("click",()=>{
+song.muted=false;
+});
 
 /* typing */
 
@@ -313,4 +288,3 @@ setTimeout(()=>{t.remove()},400);
 
 </body>
 </html>
-
