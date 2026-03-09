@@ -26,14 +26,14 @@ color:white;
 overflow-x:hidden;
 }
 
-/* floating particles */
+/* background particles */
 
 body::before{
 content:"";
 position:fixed;
 width:200%;
 height:200%;
-background:radial-gradient(red 1px,transparent 1px);
+background:radial-gradient(#ff2a2a 1px,transparent 1px);
 background-size:40px 40px;
 opacity:.05;
 animation:particles 60s linear infinite;
@@ -67,12 +67,12 @@ transform:translateY(110vh);
 .container{
 text-align:center;
 padding:30px 20px;
-border:2px solid red;
+border:2px solid #ff2a2a;
 border-radius:20px;
 width:90%;
 max-width:340px;
 backdrop-filter:blur(6px);
-box-shadow:0 0 25px red;
+box-shadow:0 0 25px #ff2a2a;
 animation:float 6s ease-in-out infinite;
 z-index:1;
 }
@@ -91,8 +91,8 @@ max-width:150px;
 height:40vw;
 max-height:150px;
 border-radius:50%;
-border:3px solid red;
-box-shadow:0 0 25px red;
+border:3px solid #ff2a2a;
+box-shadow:0 0 25px #ff2a2a;
 object-fit:cover;
 margin-bottom:15px;
 transition:.3s;
@@ -100,7 +100,7 @@ transition:.3s;
 
 .pfp:hover{
 transform:scale(1.08) rotate(3deg);
-box-shadow:0 0 45px red;
+box-shadow:0 0 45px #ff2a2a;
 }
 
 h1{
@@ -108,7 +108,7 @@ letter-spacing:4px;
 margin-bottom:6px;
 }
 
-/* typing */
+/* typing text */
 
 .bio{
 color:#aaa;
@@ -117,13 +117,13 @@ margin-bottom:20px;
 height:18px;
 }
 
-/* links */
+/* buttons */
 
 a{
 display:block;
 text-decoration:none;
 color:white;
-border:2px solid red;
+border:2px solid #ff2a2a;
 padding:12px;
 margin:10px 0;
 border-radius:8px;
@@ -132,8 +132,8 @@ font-size:16px;
 }
 
 a:hover{
-background:red;
-box-shadow:0 0 20px red;
+background:#ff2a2a;
+box-shadow:0 0 20px #ff2a2a;
 transform:scale(1.05);
 }
 
@@ -152,7 +152,7 @@ position:fixed;
 top:20px;
 right:20px;
 background:black;
-border:2px solid red;
+border:2px solid #ff2a2a;
 color:white;
 padding:8px 12px;
 cursor:pointer;
@@ -164,7 +164,7 @@ cursor:pointer;
 position:fixed;
 width:120px;
 height:120px;
-background:radial-gradient(red,transparent);
+background:radial-gradient(#ff2a2a,transparent);
 border-radius:50%;
 pointer-events:none;
 opacity:.15;
@@ -175,7 +175,7 @@ transform:translate(-50%,-50%);
 position:fixed;
 width:6px;
 height:6px;
-background:red;
+background:#ff2a2a;
 border-radius:50%;
 pointer-events:none;
 opacity:.6;
@@ -233,13 +233,13 @@ setTimeout(type,60);
 
 type();
 
-/* animated visitor counter */
+/* visitor counter animation */
 
-let count = 4185;
+let count=4185;
 
 function updateCounter(){
-count += Math.floor(Math.random()*3);
-document.getElementById("visits").innerText = count;
+count+=Math.floor(Math.random()*3);
+document.getElementById("visits").innerText=count;
 }
 
 setInterval(updateCounter,4000);
@@ -247,12 +247,12 @@ setInterval(updateCounter,4000);
 /* music toggle */
 
 function toggleMusic(){
-const m=document.getElementById("song");
+const music=document.getElementById("song");
 
-if(m.paused){
-m.play();
+if(music.paused){
+music.play();
 }else{
-m.pause();
+music.pause();
 }
 }
 
@@ -277,7 +277,7 @@ setTimeout(()=>{t.remove()},400);
 
 });
 
-/* snowflake generator */
+/* faster snow */
 
 function createSnowflake(){
 
@@ -288,7 +288,7 @@ snow.innerHTML="❄";
 
 snow.style.left=Math.random()*100+"vw";
 snow.style.fontSize=Math.random()*10+10+"px";
-snow.style.animationDuration=Math.random()*5+5+"s";
+snow.style.animationDuration=Math.random()*2+2+"s";
 
 document.body.appendChild(snow);
 
@@ -298,9 +298,10 @@ snow.remove();
 
 }
 
-setInterval(createSnowflake,200);
+setInterval(createSnowflake,120);
 
 </script>
 
 </body>
 </html>
+
