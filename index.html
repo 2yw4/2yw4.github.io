@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>/home</title>
 
 <style>
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
+}
 
 body{
 height:100vh;
@@ -16,7 +23,7 @@ justify-content:center;
 align-items:center;
 background:#000;
 color:white;
-overflow:hidden;
+overflow-x:hidden;
 }
 
 /* snow */
@@ -55,11 +62,11 @@ from{transform:translate(0,0)}
 to{transform:translate(-300px,-300px)}
 }
 
-/* card */
+/* container */
 
 .container{
 text-align:center;
-padding:40px;
+padding:30px 20px;
 border:2px solid red;
 border-radius:20px;
 width:90%;
@@ -76,11 +83,13 @@ z-index:1;
 100%{transform:translateY(0)}
 }
 
-/* pfp */
+/* profile picture */
 
 .pfp{
-width:150px;
-height:150px;
+width:40vw;
+max-width:150px;
+height:40vw;
+max-height:150px;
 border-radius:50%;
 border:3px solid red;
 box-shadow:0 0 25px red;
@@ -117,10 +126,11 @@ display:block;
 text-decoration:none;
 color:white;
 border:2px solid red;
-padding:10px;
+padding:12px;
 margin:10px 0;
 border-radius:8px;
 transition:.25s;
+font-size:16px;
 }
 
 a:hover{
@@ -128,6 +138,8 @@ background:red;
 box-shadow:0 0 20px red;
 transform:scale(1.05);
 }
+
+/* counter */
 
 .counter{
 margin-top:15px;
@@ -182,7 +194,9 @@ opacity:.6;
 
 <button class="music" onclick="toggleMusic()">music</button>
 
-<audio id="song" loop autoplay muted></audio>
+<audio id="song" autoplay loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
 
 <div class="container">
 
@@ -208,30 +222,7 @@ Visitors: <span id="visits">0</span>
 
 <script>
 
-/* songs */
-
-const songs = [
-"https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3",
-"https://cdn.pixabay.com/download/audio/2022/10/25/audio_946f8d6b1c.mp3",
-"https://cdn.pixabay.com/download/audio/2022/03/10/audio_2b6f0a3a4d.mp3",
-"https://cdn.pixabay.com/download/audio/2022/11/17/audio_c3c9f2a4c5.mp3"
-];
-
-const song = document.getElementById("song");
-
-const randomSong = songs[Math.floor(Math.random()*songs.length)];
-song.src = randomSong;
-
-song.volume = 0.6;
-song.play();
-
-/* unmute when user clicks anywhere */
-
-document.addEventListener("click",()=>{
-song.muted=false;
-});
-
-/* typing */
+/* typing text */
 
 const text="welcome to my page";
 let i=0;
@@ -246,7 +237,7 @@ setTimeout(type,60);
 
 type();
 
-/* counter */
+/* visitor counter */
 
 if(localStorage.getItem("visits")){
 localStorage.setItem("visits",Number(localStorage.getItem("visits"))+1);
@@ -263,7 +254,7 @@ let m=document.getElementById("song");
 if(m.paused){m.play()}else{m.pause()}
 }
 
-/* cursor glow + trail */
+/* cursor glow */
 
 const cursor=document.getElementById("cursor");
 
