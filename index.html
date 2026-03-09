@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>2yw4</title>
 
 <style>
@@ -13,16 +14,9 @@ height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-background:linear-gradient(45deg,#000,#1a0000,#000);
-background-size:400% 400%;
-animation:bgmove 12s infinite alternate;
+background:#000;
 color:white;
 overflow:hidden;
-}
-
-@keyframes bgmove{
-0%{background-position:0% 50%;}
-100%{background-position:100% 50%;}
 }
 
 /* enter screen */
@@ -86,7 +80,8 @@ text-align:center;
 padding:40px;
 border:2px solid red;
 border-radius:20px;
-width:340px;
+width:90%;
+max-width:340px;
 backdrop-filter:blur(6px);
 box-shadow:0 0 25px red;
 animation:float 6s ease-in-out infinite;
@@ -207,9 +202,7 @@ opacity:.6;
 
 <button class="music" onclick="toggleMusic()">music</button>
 
-<audio id="song" loop>
-<source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Kevin_MacLeod/Impact/Kevin_MacLeod_-_Cipher.mp3">
-</audio>
+<audio id="song" loop preload="auto"></audio>
 
 <div class="container">
 
@@ -235,12 +228,35 @@ Visitors: <span id="visits">0</span>
 
 <script>
 
+/* songs */
+
+const songs = [
+"https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3?filename=dark-ambient-114338.mp3",
+"https://cdn.pixabay.com/download/audio/2022/10/25/audio_946f8d6b1c.mp3?filename=dark-ambient-124008.mp3",
+"https://cdn.pixabay.com/download/audio/2022/03/10/audio_2b6f0a3a4d.mp3?filename=darkness-ambient-113997.mp3",
+"https://cdn.pixabay.com/download/audio/2022/11/17/audio_c3c9f2a4c5.mp3?filename=deep-dark-ambient-126122.mp3",
+"https://cdn.pixabay.com/audio/2023/03/14/audio_5f3c1c9a8f.mp3"
+];
+
+/* enter screen */
+
 const enter=document.getElementById("enter");
 
 enter.onclick=()=>{
+
 enter.style.display="none";
-document.getElementById("song").play();
+
+const song=document.getElementById("song");
+
+const randomSong=songs[Math.floor(Math.random()*songs.length)];
+
+song.src=randomSong;
+song.volume=0.6;
+song.play();
+
 }
+
+/* typing */
 
 const text="welcome to my page";
 let i=0;
@@ -255,6 +271,8 @@ setTimeout(type,60);
 
 type();
 
+/* counter */
+
 if(localStorage.getItem("visits")){
 localStorage.setItem("visits",Number(localStorage.getItem("visits"))+1);
 }else{
@@ -263,25 +281,32 @@ localStorage.setItem("visits",1);
 
 document.getElementById("visits").innerText=localStorage.getItem("visits");
 
+/* music toggle */
+
 function toggleMusic(){
 let m=document.getElementById("song");
 if(m.paused){m.play()}else{m.pause()}
 }
 
+/* cursor glow + trail */
+
 const cursor=document.getElementById("cursor");
 
 document.addEventListener("mousemove",e=>{
+
 cursor.style.left=e.clientX+"px";
 cursor.style.top=e.clientY+"px";
 
 let t=document.createElement("div");
+
 t.className="trail";
-t.style.left=e.clientX+"px";
-t.style.top=e.clientY+"px";
+t.style.left=e.clientX+"px;
+t.style.top=e.clientY+"px;
 
 document.body.appendChild(t);
 
 setTimeout(()=>{t.remove()},400);
+
 });
 
 </script>
