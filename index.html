@@ -2,29 +2,33 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>/home</title>
+<title>2yw4</title>
 
 <style>
-
 body{
-margin:0;
-font-family:Arial, sans-serif;
 background:black;
 color:white;
+font-family:Arial, Helvetica, sans-serif;
 display:flex;
 justify-content:center;
 align-items:center;
 height:100vh;
+margin:0;
 }
 
 .container{
 text-align:center;
-border:2px solid red;
 padding:40px;
+border:2px solid red;
 border-radius:15px;
-box-shadow:0 0 40px red;
+box-shadow:0 0 25px red;
 width:320px;
+animation:glow 3s infinite alternate;
+}
+
+@keyframes glow{
+from{box-shadow:0 0 10px red;}
+to{box-shadow:0 0 30px red;}
 }
 
 .pfp{
@@ -33,39 +37,42 @@ height:150px;
 border-radius:50%;
 border:3px solid red;
 object-fit:cover;
-box-shadow:0 0 25px red;
+box-shadow:0 0 20px red;
+margin-bottom:15px;
+}
+
+h1{
+margin:10px 0;
+letter-spacing:3px;
+}
+
+.bio{
+color:#aaa;
+font-size:14px;
 margin-bottom:20px;
 }
 
-.title{
-font-size:28px;
-color:red;
-margin-bottom:25px;
-}
-
-.link{
+a{
 display:block;
 text-decoration:none;
 color:white;
 border:2px solid red;
 padding:10px;
 margin:10px 0;
-border-radius:10px;
+border-radius:8px;
 transition:0.3s;
 }
 
-.link:hover{
+a:hover{
 background:red;
-color:black;
-box-shadow:0 0 20px red;
+box-shadow:0 0 15px red;
 }
 
 .counter{
 margin-top:20px;
-color:red;
-font-size:14px;
+color:#777;
+font-size:13px;
 }
-
 </style>
 </head>
 
@@ -75,44 +82,31 @@ font-size:14px;
 
 <img src="IMG_1820.jpg" class="pfp">
 
-<div class="title">/home</div>
+<h1>2yw4</h1>
 
-<a class="link" href="https://www.tiktok.com/@pleasecomebackimissyouuu" target="_blank">
-TikTok
-</a>
+<div class="bio">welcome</div>
 
-<a class="link" href="https://www.tiktok.com/@love2deep4u" target="_blank">
-TikTok 2
-</a>
+<a href="https://www.tiktok.com/@pleasecomebackimissyouuu">tt</a>
+<a href="https://www.tiktok.com/@love2deep4u">tt</a>
+<a href="https://www.tiktok.com/@._larping">tt</a>
 
-<a class="link" href="https://www.tiktok.com/@._larping" target="_blank">
-TikTok 3
-</a>
+<a href="https://guns.lol/2346w">guns.lol</a>
 
-<a class="link" href="https://guns.lol/2346w" target="_blank">
-guns.lol
-</a>
+<a href="https://discord.gg/aqYdUhRVt">discord</a>
 
 <div class="counter">
-Visitors: <span id="visits">1</span>
+Visitors: <span id="visits">0</span>
 </div>
 
 </div>
 
 <script>
-
-let visits = localStorage.getItem("visits");
-
-if(!visits){
-visits = 1;
+if(localStorage.getItem("visits")){
+localStorage.setItem("visits", Number(localStorage.getItem("visits"))+1);
 }else{
-visits++;
+localStorage.setItem("visits",1);
 }
-
-localStorage.setItem("visits", visits);
-
-document.getElementById("visits").innerText = visits;
-
+document.getElementById("visits").innerText = localStorage.getItem("visits");
 </script>
 
 </body>
