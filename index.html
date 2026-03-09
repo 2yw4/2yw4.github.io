@@ -11,59 +11,53 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial;
+font-family:Arial, Helvetica, sans-serif;
 }
 
 body{
 height:100vh;
 overflow:hidden;
+background:linear-gradient(to right,#0a0a0a 50%,#f2f2f2 50%);
 display:flex;
 align-items:center;
 justify-content:center;
 }
 
-/* background split */
-
-.left{
-position:absolute;
-left:0;
-top:0;
-width:50%;
-height:100%;
-background:#0e0e0e;
-}
-
-.right{
-position:absolute;
-right:0;
-top:0;
-width:50%;
-height:100%;
-background:#f2f2f2;
-}
-
-/* navbar */
+/* NAVBAR */
 
 nav{
 position:absolute;
-top:30px;
-right:40px;
+top:25px;
+width:90%;
+display:flex;
+justify-content:space-between;
+align-items:center;
 z-index:10;
 }
 
-nav a{
-margin-left:30px;
-text-decoration:none;
+.logo{
+font-size:20px;
+color:white;
 font-weight:bold;
-color:#6c63ff;
-font-size:15px;
 }
 
-/* text */
+.menu{
+display:flex;
+gap:40px;
+}
+
+.menu a{
+text-decoration:none;
+font-weight:bold;
+font-size:15px;
+color:#555;
+}
+
+/* TEXT */
 
 .leftText{
 position:absolute;
-left:8%;
+left:10%;
 top:45%;
 font-size:55px;
 font-weight:bold;
@@ -72,54 +66,45 @@ color:white;
 
 .rightText{
 position:absolute;
-right:8%;
+right:10%;
 top:45%;
 font-size:55px;
 font-weight:bold;
-color:#555;
+color:#333;
 }
 
-/* statue */
+/* ANGEL */
 
-.statue{
+.angel{
 position:absolute;
 z-index:5;
-text-align:center;
 }
 
-.statue img{
+.angel img{
 width:420px;
-filter:drop-shadow(0 20px 40px rgba(0,0,0,0.6));
+filter:drop-shadow(0 30px 60px rgba(0,0,0,0.6));
 }
 
-/* floating pieces */
+/* FLOATING DEBRIS */
 
-.piece{
+.debris{
 position:absolute;
-width:120px;
+width:140px;
 height:18px;
-background:#444;
-opacity:0.35;
-animation:float 10s infinite linear;
+background:#777;
+opacity:0.25;
+animation:float 9s infinite linear;
 }
 
 @keyframes float{
 
-0%{
-transform:translateY(0) rotate(0deg);
-}
-
-50%{
-transform:translateY(-200px) rotate(90deg);
-}
-
-100%{
-transform:translateY(0) rotate(180deg);
-}
+0%{transform:translateY(0) rotate(0deg)}
+50%{transform:translateY(-220px) rotate(90deg)}
+100%{transform:translateY(0) rotate(180deg)}
 
 }
 
-/* mobile */
+/* MOBILE */
 
 @media(max-width:800px){
 
@@ -128,8 +113,12 @@ font-size:28px;
 top:35%;
 }
 
-.statue img{
+.angel img{
 width:240px;
+}
+
+.menu{
+gap:20px;
 }
 
 }
@@ -144,31 +133,35 @@ width:240px;
 </audio>
 
 <script>
-document.body.addEventListener("click", function() {
+document.body.addEventListener("click",function(){
 document.getElementById("music").play();
-},{ once:true });
+},{once:true});
 </script>
 
-<div class="left"></div>
-<div class="right"></div>
-
 <nav>
+
+<div class="logo">△</div>
+
+<div class="menu">
 <a href="https://discord.gg/aqYdUhRVt" target="_blank">Discord</a>
 <a href="https://www.instagram.com/z8q1z" target="_blank">Instagram</a>
 <a href="https://www.tiktok.com/@love2deep4u" target="_blank">TikTok</a>
+</div>
+
 </nav>
 
 <div class="leftText">THE FALL OF</div>
 <div class="rightText">HUMANITY</div>
 
-<div class="statue">
+<div class="angel">
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Angel_statue.jpg/512px-Angel_statue.jpg">
 </div>
 
-<div class="piece" style="top:20%;left:20%"></div>
-<div class="piece" style="top:70%;left:30%"></div>
-<div class="piece" style="top:30%;left:60%"></div>
-<div class="piece" style="top:60%;left:80%"></div>
+<div class="debris" style="top:15%;left:25%"></div>
+<div class="debris" style="top:60%;left:20%"></div>
+<div class="debris" style="top:40%;left:65%"></div>
+<div class="debris" style="top:75%;left:70%"></div>
+<div class="debris" style="top:30%;left:45%"></div>
 
 </body>
 </html>
