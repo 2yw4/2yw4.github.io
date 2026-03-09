@@ -26,6 +26,24 @@ color:white;
 overflow-x:hidden;
 }
 
+/* enter screen */
+
+#enter{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:30px;
+letter-spacing:3px;
+cursor:pointer;
+z-index:100;
+}
+
 /* background particles */
 
 body::before{
@@ -83,7 +101,7 @@ z-index:1;
 100%{transform:translateY(0)}
 }
 
-/* profile picture */
+/* pfp */
 
 .pfp{
 width:40vw;
@@ -95,20 +113,16 @@ border:3px solid #ff2a2a;
 box-shadow:0 0 25px #ff2a2a;
 object-fit:cover;
 margin-bottom:15px;
-transition:.3s;
 }
 
-.pfp:hover{
-transform:scale(1.08) rotate(3deg);
-box-shadow:0 0 45px #ff2a2a;
-}
+/* name */
 
 h1{
 letter-spacing:4px;
 margin-bottom:6px;
 }
 
-/* typing text */
+/* typing */
 
 .bio{
 color:#aaa;
@@ -117,7 +131,7 @@ margin-bottom:20px;
 height:18px;
 }
 
-/* buttons */
+/* links */
 
 a{
 display:block;
@@ -134,10 +148,9 @@ font-size:16px;
 a:hover{
 background:#ff2a2a;
 box-shadow:0 0 20px #ff2a2a;
-transform:scale(1.05);
 }
 
-/* counter */
+/* visitor counter */
 
 .counter{
 margin-top:15px;
@@ -186,11 +199,13 @@ opacity:.6;
 
 <body>
 
+<div id="enter">click to enter</div>
+
 <div class="cursor" id="cursor"></div>
 
 <button class="music" onclick="toggleMusic()">music</button>
 
-<audio id="song" autoplay loop>
+<audio id="song" loop>
 <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3" type="audio/mpeg">
 </audio>
 
@@ -218,7 +233,21 @@ Visitors: <span id="visits">4185</span>
 
 <script>
 
-/* typing effect */
+/* enter screen + music */
+
+const enter = document.getElementById("enter");
+const song = document.getElementById("song");
+
+enter.onclick = () =>{
+
+enter.style.display="none";
+
+song.volume=0.6;
+song.play();
+
+};
+
+/* typing */
 
 const text="welcome to my page";
 let i=0;
@@ -233,7 +262,7 @@ setTimeout(type,60);
 
 type();
 
-/* visitor counter animation */
+/* visitor counter */
 
 let count=4185;
 
@@ -247,16 +276,16 @@ setInterval(updateCounter,4000);
 /* music toggle */
 
 function toggleMusic(){
-const music=document.getElementById("song");
 
-if(music.paused){
-music.play();
+if(song.paused){
+song.play();
 }else{
-music.pause();
-}
+song.pause();
 }
 
-/* cursor glow + trail */
+}
+
+/* cursor glow */
 
 const cursor=document.getElementById("cursor");
 
@@ -292,9 +321,7 @@ snow.style.animationDuration=Math.random()*2+2+"s";
 
 document.body.appendChild(snow);
 
-setTimeout(()=>{
-snow.remove();
-},10000);
+setTimeout(()=>{snow.remove()},10000);
 
 }
 
@@ -304,4 +331,3 @@ setInterval(createSnowflake,120);
 
 </body>
 </html>
-
