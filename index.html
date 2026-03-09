@@ -5,52 +5,135 @@
 <title>2yw4</title>
 
 <style>
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+
 body{
-background:black;
-color:white;
-font-family:Arial, Helvetica, sans-serif;
+height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-height:100vh;
-margin:0;
+background:linear-gradient(45deg,#000,#1a0000,#000);
+background-size:400% 400%;
+animation:bgmove 12s infinite alternate;
+color:white;
+overflow:hidden;
 }
+
+@keyframes bgmove{
+0%{background-position:0% 50%;}
+100%{background-position:100% 50%;}
+}
+
+/* enter screen */
+
+#enter{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:28px;
+letter-spacing:3px;
+cursor:pointer;
+z-index:10;
+}
+
+/* snow */
+
+.snow{
+position:fixed;
+width:100%;
+height:100%;
+background-image:radial-gradient(white 1px,transparent 1px);
+background-size:40px 40px;
+opacity:.15;
+animation:snow 30s linear infinite;
+pointer-events:none;
+}
+
+@keyframes snow{
+from{transform:translateY(-200px)}
+to{transform:translateY(400px)}
+}
+
+/* particles */
+
+body::before{
+content:"";
+position:fixed;
+width:200%;
+height:200%;
+background:radial-gradient(red 1px,transparent 1px);
+background-size:40px 40px;
+opacity:.05;
+animation:particles 60s linear infinite;
+}
+
+@keyframes particles{
+from{transform:translate(0,0)}
+to{transform:translate(-300px,-300px)}
+}
+
+/* card */
 
 .container{
 text-align:center;
 padding:40px;
 border:2px solid red;
-border-radius:15px;
+border-radius:20px;
+width:340px;
+backdrop-filter:blur(6px);
 box-shadow:0 0 25px red;
-width:320px;
-animation:glow 3s infinite alternate;
+animation:float 6s ease-in-out infinite;
+z-index:1;
 }
 
-@keyframes glow{
-from{box-shadow:0 0 10px red;}
-to{box-shadow:0 0 30px red;}
+@keyframes float{
+0%{transform:translateY(0)}
+50%{transform:translateY(-12px)}
+100%{transform:translateY(0)}
 }
+
+/* pfp */
 
 .pfp{
 width:150px;
 height:150px;
 border-radius:50%;
 border:3px solid red;
+box-shadow:0 0 25px red;
 object-fit:cover;
-box-shadow:0 0 20px red;
 margin-bottom:15px;
+transition:.3s;
 }
 
-h1{
-margin:10px 0;
-letter-spacing:3px;
+.pfp:hover{
+transform:scale(1.08) rotate(3deg);
+box-shadow:0 0 45px red;
 }
+
+/* name */
+
+h1{
+letter-spacing:4px;
+margin-bottom:6px;
+}
+
+/* typing */
 
 .bio{
 color:#aaa;
 font-size:14px;
 margin-bottom:20px;
+height:18px;
 }
+
+/* links */
 
 a{
 display:block;
@@ -60,23 +143,73 @@ border:2px solid red;
 padding:10px;
 margin:10px 0;
 border-radius:8px;
-transition:0.3s;
+transition:.25s;
 }
 
 a:hover{
 background:red;
-box-shadow:0 0 15px red;
+box-shadow:0 0 20px red;
+transform:scale(1.05);
 }
 
 .counter{
-margin-top:20px;
-color:#777;
+margin-top:15px;
+color:#666;
 font-size:13px;
 }
+
+/* music button */
+
+.music{
+position:fixed;
+top:20px;
+right:20px;
+background:black;
+border:2px solid red;
+color:white;
+padding:8px 12px;
+cursor:pointer;
+}
+
+/* cursor glow */
+
+.cursor{
+position:fixed;
+width:120px;
+height:120px;
+background:radial-gradient(red,transparent);
+border-radius:50%;
+pointer-events:none;
+opacity:.15;
+transform:translate(-50%,-50%);
+}
+
+.trail{
+position:fixed;
+width:6px;
+height:6px;
+background:red;
+border-radius:50%;
+pointer-events:none;
+opacity:.6;
+}
+
 </style>
 </head>
 
 <body>
+
+<div id="enter">click to enter</div>
+
+<div class="snow"></div>
+
+<div class="cursor" id="cursor"></div>
+
+<button class="music" onclick="toggleMusic()">music</button>
+
+<audio id="song" loop>
+<source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Kevin_MacLeod/Impact/Kevin_MacLeod_-_Cipher.mp3">
+</audio>
 
 <div class="container">
 
@@ -84,7 +217,7 @@ font-size:13px;
 
 <h1>2yw4</h1>
 
-<div class="bio">welcome</div>
+<div class="bio" id="typing"></div>
 
 <a href="https://www.tiktok.com/@pleasecomebackimissyouuu">tt</a>
 <a href="https://www.tiktok.com/@love2deep4u">tt</a>
@@ -101,12 +234,56 @@ Visitors: <span id="visits">0</span>
 </div>
 
 <script>
+
+const enter=document.getElementById("enter");
+
+enter.onclick=()=>{
+enter.style.display="none";
+document.getElementById("song").play();
+}
+
+const text="welcome to my page";
+let i=0;
+
+function type(){
+if(i<text.length){
+document.getElementById("typing").innerHTML+=text.charAt(i);
+i++;
+setTimeout(type,60);
+}
+}
+
+type();
+
 if(localStorage.getItem("visits")){
-localStorage.setItem("visits", Number(localStorage.getItem("visits"))+1);
+localStorage.setItem("visits",Number(localStorage.getItem("visits"))+1);
 }else{
 localStorage.setItem("visits",1);
 }
-document.getElementById("visits").innerText = localStorage.getItem("visits");
+
+document.getElementById("visits").innerText=localStorage.getItem("visits");
+
+function toggleMusic(){
+let m=document.getElementById("song");
+if(m.paused){m.play()}else{m.pause()}
+}
+
+const cursor=document.getElementById("cursor");
+
+document.addEventListener("mousemove",e=>{
+cursor.style.left=e.clientX+"px";
+cursor.style.top=e.clientY+"px";
+
+let t=document.createElement("div");
+t.className="trail";
+t.style.left=e.clientX+"px";
+t.style.top=e.clientY+"px";
+
+document.body.appendChild(t);
+
+setTimeout(()=>{t.remove()},400);
+});
+
 </script>
 
 </body>
