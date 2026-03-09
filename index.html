@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>/home</title>
+<title>The Fall of Humanity</title>
 
 <style>
 
@@ -19,179 +17,135 @@ font-family:Arial;
 body{
 height:100vh;
 display:flex;
-justify-content:center;
 align-items:center;
-background:#000;
-color:white;
-overflow-x:hidden;
+justify-content:center;
+overflow:hidden;
 }
 
-/* enter screen */
+/* split background */
 
-#enter{
-position:fixed;
-top:0;
+.left{
+position:absolute;
 left:0;
-width:100%;
+top:0;
+width:50%;
 height:100%;
-background:black;
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:30px;
-letter-spacing:3px;
-cursor:pointer;
-z-index:100;
+background:#0a0a0a;
 }
 
-/* background particles */
-
-body::before{
-content:"";
-position:fixed;
-width:200%;
-height:200%;
-background:radial-gradient(#ff2a2a 1px,transparent 1px);
-background-size:40px 40px;
-opacity:.05;
-animation:particles 60s linear infinite;
+.right{
+position:absolute;
+right:0;
+top:0;
+width:50%;
+height:100%;
+background:#f2f2f2;
 }
 
-@keyframes particles{
-from{transform:translate(0,0)}
-to{transform:translate(-300px,-300px)}
-}
+/* NAVBAR */
 
-/* snowflakes */
-
-.snowflake{
-position:fixed;
-top:-10px;
-color:white;
-font-size:10px;
-pointer-events:none;
-animation:fall linear infinite;
-opacity:.9;
-}
-
-@keyframes fall{
-to{
-transform:translateY(110vh);
-}
-}
-
-/* container */
-
-.container{
-text-align:center;
-padding:30px 20px;
-border:2px solid #ff2a2a;
-border-radius:20px;
+nav{
+position:absolute;
+top:30px;
 width:90%;
-max-width:340px;
-backdrop-filter:blur(6px);
-box-shadow:0 0 25px #ff2a2a;
-animation:float 6s ease-in-out infinite;
-z-index:1;
+display:flex;
+justify-content:space-between;
+align-items:center;
+z-index:10;
+}
+
+nav ul{
+display:flex;
+gap:40px;
+list-style:none;
+}
+
+nav a{
+text-decoration:none;
+font-weight:bold;
+font-size:16px;
+transition:0.3s;
+}
+
+nav a:hover{
+opacity:0.6;
+}
+
+/* TEXT */
+
+.leftText{
+position:absolute;
+left:8%;
+top:45%;
+font-size:55px;
+font-weight:bold;
+color:white;
+}
+
+.rightText{
+position:absolute;
+right:8%;
+top:45%;
+font-size:55px;
+font-weight:bold;
+color:black;
+}
+
+/* statue */
+
+.statue{
+position:relative;
+z-index:5;
+text-align:center;
+}
+
+.statue img{
+width:330px;
+}
+
+/* button */
+
+button{
+margin-top:15px;
+padding:12px 28px;
+border-radius:25px;
+border:none;
+background:black;
+color:white;
+cursor:pointer;
+font-size:14px;
+}
+
+/* floating shapes */
+
+.piece{
+position:absolute;
+width:100px;
+height:18px;
+background:#222;
+opacity:0.4;
+animation:float 8s infinite linear;
 }
 
 @keyframes float{
-0%{transform:translateY(0)}
-50%{transform:translateY(-12px)}
-100%{transform:translateY(0)}
+0%{transform:translateY(0) rotate(0)}
+50%{transform:translateY(-150px) rotate(90deg)}
+100%{transform:translateY(0) rotate(180deg)}
 }
 
-/* pfp */
+/* MOBILE */
 
-.pfp{
-width:40vw;
-max-width:150px;
-height:40vw;
-max-height:150px;
-border-radius:50%;
-border:3px solid #ff2a2a;
-box-shadow:0 0 25px #ff2a2a;
-object-fit:cover;
-margin-bottom:15px;
+@media(max-width:800px){
+
+.leftText,.rightText{
+font-size:28px;
+top:35%;
 }
 
-/* name */
-
-h1{
-letter-spacing:4px;
-margin-bottom:6px;
+.statue img{
+width:200px;
 }
 
-/* typing */
-
-.bio{
-color:#aaa;
-font-size:14px;
-margin-bottom:20px;
-height:18px;
-}
-
-/* links */
-
-a{
-display:block;
-text-decoration:none;
-color:white;
-border:2px solid #ff2a2a;
-padding:12px;
-margin:10px 0;
-border-radius:8px;
-transition:.25s;
-font-size:16px;
-}
-
-a:hover{
-background:#ff2a2a;
-box-shadow:0 0 20px #ff2a2a;
-}
-
-/* visitor counter */
-
-.counter{
-margin-top:15px;
-color:#aaa;
-font-size:13px;
-}
-
-/* music button */
-
-.music{
-position:fixed;
-top:20px;
-right:20px;
-background:black;
-border:2px solid #ff2a2a;
-color:white;
-padding:8px 12px;
-cursor:pointer;
-}
-
-/* cursor glow */
-
-.cursor{
-position:fixed;
-width:120px;
-height:120px;
-background:radial-gradient(#ff2a2a,transparent);
-border-radius:50%;
-pointer-events:none;
-opacity:.15;
-transform:translate(-50%,-50%);
-}
-
-.trail{
-position:fixed;
-width:6px;
-height:6px;
-background:#ff2a2a;
-border-radius:50%;
-pointer-events:none;
-opacity:.6;
 }
 
 </style>
@@ -199,135 +153,64 @@ opacity:.6;
 
 <body>
 
-<div id="enter">click to enter</div>
+<!-- MUSIC -->
 
-<div class="cursor" id="cursor"></div>
-
-<button class="music" onclick="toggleMusic()">music</button>
-
-<audio id="song" loop>
-<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3" type="audio/mpeg">
+<audio autoplay loop id="music">
+<source src="song.m4a" type="audio/mp4">
 </audio>
 
-<div class="container">
-
-<img src="IMG_1820.jpg" class="pfp">
-
-<h1>/home</h1>
-
-<div class="bio" id="typing"></div>
-
-<a href="https://www.tiktok.com/@pleasecomebackimissyouuu">tt</a>
-<a href="https://www.tiktok.com/@love2deep4u">tt</a>
-<a href="https://www.tiktok.com/@._larping">tt</a>
-
-<a href="https://guns.lol/2346w">guns.lol</a>
-
-<a href="https://discord.gg/aqYdUhRVt">discord</a>
-
-<div class="counter">
-Visitors: <span id="visits">4185</span>
-</div>
-
-</div>
-
 <script>
-
-/* enter screen + music */
-
-const enter = document.getElementById("enter");
-const song = document.getElementById("song");
-
-enter.onclick = () =>{
-
-enter.style.display="none";
-
-song.volume=0.6;
-song.play();
-
-};
-
-/* typing */
-
-const text="welcome to my page";
-let i=0;
-
-function type(){
-if(i<text.length){
-document.getElementById("typing").innerHTML+=text.charAt(i);
-i++;
-setTimeout(type,60);
-}
-}
-
-type();
-
-/* visitor counter */
-
-let count=4185;
-
-function updateCounter(){
-count+=Math.floor(Math.random()*3);
-document.getElementById("visits").innerText=count;
-}
-
-setInterval(updateCounter,4000);
-
-/* music toggle */
-
-function toggleMusic(){
-
-if(song.paused){
-song.play();
-}else{
-song.pause();
-}
-
-}
-
-/* cursor glow */
-
-const cursor=document.getElementById("cursor");
-
-document.addEventListener("mousemove",e=>{
-
-cursor.style.left=e.clientX+"px";
-cursor.style.top=e.clientY+"px";
-
-let t=document.createElement("div");
-
-t.className="trail";
-t.style.left=e.clientX+"px";
-t.style.top=e.clientY+"px";
-
-document.body.appendChild(t);
-
-setTimeout(()=>{t.remove()},400);
-
+document.addEventListener("click", () => {
+document.getElementById("music").play();
 });
-
-/* faster snow */
-
-function createSnowflake(){
-
-const snow=document.createElement("div");
-
-snow.classList.add("snowflake");
-snow.innerHTML="❄";
-
-snow.style.left=Math.random()*100+"vw";
-snow.style.fontSize=Math.random()*10+10+"px";
-snow.style.animationDuration=Math.random()*2+2+"s";
-
-document.body.appendChild(snow);
-
-setTimeout(()=>{snow.remove()},10000);
-
-}
-
-setInterval(createSnowflake,120);
-
 </script>
+
+<!-- BACKGROUND -->
+
+<div class="left"></div>
+<div class="right"></div>
+
+<!-- NAVBAR -->
+
+<nav>
+
+<div>△</div>
+
+<ul>
+
+<li><a href="https://discord.gg/aqYdUhRVt" target="_blank">Discord</a></li>
+
+<li><a href="https://www.instagram.com/z8q1z" target="_blank">Instagram</a></li>
+
+<li><a href="https://www.tiktok.com/@love2deep4u" target="_blank">TikTok</a></li>
+
+</ul>
+
+</nav>
+
+<!-- TEXT -->
+
+<div class="leftText">THE FALL OF</div>
+<div class="rightText">HUMANITY</div>
+
+<!-- STATUE -->
+
+<div class="statue">
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Angel_statue.jpg/512px-Angel_statue.jpg">
+
+<br>
+
+<button>READ MORE</button>
+
+</div>
+
+<!-- FLOATING PIECES -->
+
+<div class="piece" style="top:20%;left:20%"></div>
+<div class="piece" style="top:60%;left:80%"></div>
+<div class="piece" style="top:40%;left:50%"></div>
+<div class="piece" style="top:70%;left:35%"></div>
 
 </body>
 </html>
