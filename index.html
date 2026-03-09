@@ -23,8 +23,6 @@ left:0;
 z-index:-1;
 }
 
-/* navbar */
-
 nav{
 background:rgba(0,0,0,0.7);
 padding:15px;
@@ -91,50 +89,19 @@ background:#000;
 color:#555;
 }
 
-input,button{
-background:black;
-border:1px solid #00ff9c;
-color:#00ff9c;
-padding:6px;
-margin-top:10px;
-}
-
 </style>
 </head>
 
 <body>
 
-<!-- music -->
-
-<iframe width="0" height="0"
-src="https://www.youtube.com/embed/8GW6sLrK40k?autoplay=1&loop=1&playlist=8GW6sLrK40k"
-frameborder="0"
-allow="autoplay">
-</iframe>
-
 <canvas id="bg"></canvas>
-
-<!-- login screen -->
-
-<div id="loginBox" class="terminal" style="margin-top:200px;">
-<p>> enter password</p>
-
-<input type="password" id="pass">
-
-<br>
-
-<button onclick="login()">enter</button>
-
-<p id="loginMsg"></p>
-
-</div>
 
 <nav>
 <a href="/">Home</a>
 <a href="https://discord.gg/A5bx7pWee" target="_blank">Discord</a>
 </nav>
 
-<section id="main" style="display:none;">
+<section>
 
 <div class="terminal">
 
@@ -164,25 +131,6 @@ Visitors: <span id="visits">Loading...</span>
 </footer>
 
 <script>
-
-/* login */
-
-function login(){
-
-let password=document.getElementById("pass").value;
-
-if(password==="home"){
-
-document.getElementById("loginBox").style.display="none";
-document.getElementById("main").style.display="block";
-
-}else{
-
-document.getElementById("loginMsg").innerText="> access denied";
-
-}
-
-}
 
 /* typing animation */
 
