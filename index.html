@@ -9,12 +9,14 @@
 
 body{
 margin:0;
-font-family:monospace;
-background:black;
-color:#00ff9c;
+font-family:Arial, sans-serif;
+color:white;
 text-align:center;
 overflow:hidden;
+background:black;
 }
+
+/* background particles */
 
 canvas{
 position:fixed;
@@ -23,61 +25,104 @@ left:0;
 z-index:-1;
 }
 
+/* navbar */
+
 nav{
-background:rgba(0,0,0,0.7);
-padding:15px;
 position:fixed;
 top:0;
 width:100%;
+padding:20px;
+background:rgba(0,0,0,0.6);
 }
 
 nav a{
-color:#00ff9c;
+color:white;
 text-decoration:none;
 margin:0 20px;
 font-size:18px;
 }
 
 nav a:hover{
-color:white;
+color:red;
 }
+
+/* main section */
 
 section{
 padding-top:160px;
 }
 
-.terminal{
-background:#0a0a0a;
-border:1px solid #00ff9c;
-padding:35px;
+/* card */
+
+.card{
+background:rgba(0,0,0,0.6);
+border-radius:15px;
+padding:40px;
 display:inline-block;
-box-shadow:0 0 20px #00ff9c33;
+border:1px solid red;
+box-shadow:0 0 25px rgba(255,0,0,0.5);
+transition:0.3s;
 }
 
-h1{
-font-size:45px;
-margin-bottom:15px;
+.card:hover{
+transform:translateY(-5px);
 }
+
+/* title */
+
+h1{
+font-size:50px;
+margin-bottom:10px;
+}
+
+/* discord button */
 
 .discord{
 display:inline-block;
 margin-top:20px;
-padding:10px 25px;
-border:1px solid #00ff9c;
-color:#00ff9c;
+padding:12px 30px;
+border-radius:8px;
+background:red;
+color:white;
 text-decoration:none;
+font-weight:bold;
 transition:0.2s;
 }
 
 .discord:hover{
-background:#00ff9c;
-color:black;
+background:#cc0000;
+transform:scale(1.05);
 }
 
-.counter{
-margin-top:20px;
-font-size:18px;
+/* links */
+
+.links{
+margin-top:25px;
+}
+
+.linkbtn{
+display:block;
+margin:10px auto;
+padding:12px 25px;
+width:220px;
+border:1px solid red;
+border-radius:8px;
+text-decoration:none;
 color:white;
+background:black;
+transition:0.2s;
+}
+
+.linkbtn:hover{
+background:red;
+transform:scale(1.05);
+}
+
+/* counters */
+
+.counter{
+margin-top:15px;
+opacity:0.8;
 }
 
 footer{
@@ -85,8 +130,8 @@ position:fixed;
 bottom:0;
 width:100%;
 padding:10px;
-background:#000;
-color:#555;
+color:#aaa;
+font-size:14px;
 }
 
 </style>
@@ -103,16 +148,35 @@ color:#555;
 
 <section>
 
-<div class="terminal">
+<div class="card">
 
 <h1 id="typing"></h1>
 
-<p>> system online</p>
-<p>> welcome to /home</p>
+<p>Welcome to my page</p>
 
 <a class="discord" href="https://discord.gg/A5bx7pWee" target="_blank">
 Join Discord
 </a>
+
+<div class="links">
+
+<a class="linkbtn" href="https://www.tiktok.com/@pleasecomebackimissyouuu" target="_blank">
+TikTok @pleasecomebackimissyouuu
+</a>
+
+<a class="linkbtn" href="https://www.tiktok.com/@love2deep4u" target="_blank">
+TikTok @love2deep4u
+</a>
+
+<a class="linkbtn" href="https://www.tiktok.com/@._larping" target="_blank">
+TikTok @._larping
+</a>
+
+<a class="linkbtn" href="https://guns.lol/2346w" target="_blank">
+guns.lol
+</a>
+
+</div>
 
 <div class="counter">
 Members: <span id="members">Loading...</span>
@@ -127,7 +191,7 @@ Visitors: <span id="visits">Loading...</span>
 </section>
 
 <footer>
-© 2026 /home
+© 2026
 </footer>
 
 <script>
@@ -147,7 +211,7 @@ setTimeout(type,120);
 
 type();
 
-/* particle background */
+/* particles */
 
 const canvas=document.getElementById("bg");
 const ctx=canvas.getContext("2d");
@@ -157,30 +221,35 @@ canvas.height=window.innerHeight;
 
 let particles=[];
 
-for(let i=0;i<100;i++){
+for(let i=0;i<80;i++){
 particles.push({
 x:Math.random()*canvas.width,
 y:Math.random()*canvas.height,
-vx:(Math.random()-0.5)*1,
-vy:(Math.random()-0.5)*1
+vx:(Math.random()-0.5)*0.5,
+vy:(Math.random()-0.5)*0.5
 });
 }
 
 function draw(){
+
 ctx.clearRect(0,0,canvas.width,canvas.height);
 
 particles.forEach(p=>{
+
 p.x+=p.vx;
 p.y+=p.vy;
 
 if(p.x<0||p.x>canvas.width)p.vx*=-1;
 if(p.y<0||p.y>canvas.height)p.vy*=-1;
 
-ctx.fillStyle="#00ff9c";
+ctx.fillStyle="red";
+ctx.globalAlpha=0.5;
 ctx.fillRect(p.x,p.y,2,2);
+
 });
 
 requestAnimationFrame(draw);
+
 }
 
 draw();
